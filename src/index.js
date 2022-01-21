@@ -9,7 +9,7 @@ import thunk from 'redux-thunk';
 
 import "./index.css";
 import App from "./App";
-import { reducer } from './reducers';
+import reducer from './reducers';
 
 const store = createStore(reducer, applyMiddleware(thunk, logger));
 const { worker } = require('./mocks/browser');
