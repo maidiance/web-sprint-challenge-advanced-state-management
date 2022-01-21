@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const FETCH_START = 'FETCH_START';
+export const FETCH_SUCCESS = 'FETCH_SUCCESS';
 export const FETCH_SMURFS = 'FETCH_SMURFS';
 export const FETCH_FAIL = 'FETCH_FAIL';
 export const ADD_SMURF = 'ADD_SMURF';
@@ -19,6 +20,10 @@ export const fetchSmurfs = () => {
         .catch(err => {
             console.error(err);
         })
+}
+
+export const fetchSuccess = (smurfs) => {
+    return({type: FETCH_SUCCESS, payload: smurfs})
 }
 
 //2. Add a standard action that allows us to add new smurf (including the name, nickname, position, summary)
