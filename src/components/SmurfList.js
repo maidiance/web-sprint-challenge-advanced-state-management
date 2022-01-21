@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { connect } from 'react-redux';
 import Smurf from './Smurf';
+import SmurfContext from '../contexts/SmurfContext';
 
  const SmurfList = ()=> {
+    const {loading, smurfs} = useContext(SmurfContext);
     const isLoading = false;
     const testSmurf = {
         id:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
@@ -20,7 +23,7 @@ import Smurf from './Smurf';
     </div>);
 }
 
-export default SmurfList;
+export default connect()(SmurfList);
 
 //Task List:
 //1. Connect the smurfs and loading state values to the SmurfList component.
