@@ -12,18 +12,22 @@ export const SET_ERROR = 'SET_ERROR';
 // performs an axios call to retreive smurfs from our server, 
 // saves the result of that call to our state and shows an error if one is made.
 
-export const fetchSmurfs = () => {
+export const fetchSmurfs = () => (dispatch) => {
     axios.get('http://localhost:3333/smurfs')
         .then(resp => {
-            console.log(resp);
+            dispatch(fetchStart());
+            dispatch(fetchSuccess(resp.body));
         })
         .catch(err => {
             console.error(err);
         })
 }
 
+export const fetchStart = () => {
+    return({type: FETCH_START});
+}
 export const fetchSuccess = (smurfs) => {
-    return({type: FETCH_SUCCESS, payload: smurfs})
+    return({type: FETCH_SUCCESS, payload: smurfs});
 }
 
 //2. Add a standard action that allows us to add new smurf (including the name, nickname, position, summary)

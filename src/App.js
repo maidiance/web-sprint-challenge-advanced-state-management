@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, Component } from "react";
 
 import AddForm from './components/AddForm';
 import SmurfList from './components/SmurfList';
@@ -7,7 +7,12 @@ import Header from './components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
+import { fetchSmurfs } from './actions';
+
 const App = ()=> {
+  useEffect(()=> {
+    fetchSmurfs();
+  }, []);
   return (
     <div className="App">
       <Header />
