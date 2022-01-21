@@ -6,15 +6,16 @@ import SmurfList from './components/SmurfList';
 import Header from './components/Header';
 
 import SmurfContext from './contexts/SmurfContext';
+import FormContext from './contexts/FormContext';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
-import { fetchSmurfs } from './actions';
+import { fetchSmurfs, setError, addSmurf } from './actions';
 
-const App = ({loading, smurfs})=> {
+const App = ({dispatch, loading, smurfs, error})=> {
   useEffect(()=> {
-    fetchSmurfs();
+    dispatch(fetchSmurfs());
   }, []);
 
   return (
@@ -24,8 +25,10 @@ const App = ({loading, smurfs})=> {
       <main>
         <SmurfContext.Provider value={{loading, smurfs}}>
           <SmurfList/>
-          <AddForm/>
         </SmurfContext.Provider>
+        <FormContext.Provider value={{error, setError, addSmurf}}>
+          <AddForm/>
+        </FormContext.Provider>
       </main>
     </div>
   );
@@ -35,6 +38,7 @@ const mapStateToProps = state => {
   return {
     smurfs: state.smurfs,
     loading: state.loading,
+    error: state.error,
   };
 }
 export default connect(mapStateToProps)(App);

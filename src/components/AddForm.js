@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import FormContext from '../contexts/FormContext';
 
 const AddForm = (props) => {
+    const {error, setError, addSmurf} = useContext(FormContext);
     const [state, setState] = useState({
         name:"",
         position:"",
         nickname:"",
         description:""
     });
-
-    //remove when error state is added
-    const errorMessage = "";
 
     const handleChange = e => {
         setState({
@@ -22,6 +21,7 @@ const AddForm = (props) => {
         e.preventDefault();
         if (state.name === "" || state.position === "" || state.nickname === "") {
             //dispatch a custom error action
+            setError('addForm error');
         } else {
             //dispatch an addSmurf action
         }
@@ -47,7 +47,7 @@ const AddForm = (props) => {
                 <textarea onChange={handleChange} value={state.description} name="description" id="description" />
             </div>
             {
-                errorMessage && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {errorMessage}</div>
+                error && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {error}</div>
             }
             <button>Submit Smurf</button>
         </form>

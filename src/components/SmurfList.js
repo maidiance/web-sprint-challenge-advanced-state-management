@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { connect } from 'react-redux';
+
 import Smurf from './Smurf';
 import SmurfContext from '../contexts/SmurfContext';
 
@@ -16,17 +16,17 @@ import SmurfContext from '../contexts/SmurfContext';
     if (loading) {
         return <h1>Loading...</h1>;
     }
-
+    console.log(smurfs);
     return(<div className="listContainer">
         {
             smurfs.map(smurf => {
-                return <Smurf />
+                return <Smurf smurf={smurf}/>
             })
         }
     </div>);
 }
 
-export default connect()(SmurfList);
+export default SmurfList;
 
 //Task List:
 //1. Connect the smurfs and loading state values to the SmurfList component.

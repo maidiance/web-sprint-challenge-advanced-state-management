@@ -13,17 +13,15 @@ export const SET_ERROR = 'SET_ERROR';
 // saves the result of that call to our state and shows an error if one is made.
 
 export const fetchSmurfs = () => (dispatch) => {
-    let smurfs = [];
     axios.get('http://localhost:3333/smurfs')
         .then(resp => {
+            console.log('fetchSmurfs', resp.data);
             dispatch(fetchStart());
-            dispatch(fetchSuccess(resp.body));
-            smurfs = resp.body;
+            dispatch(fetchSuccess(resp.data));
         })
         .catch(err => {
             dispatch(fetchFail(err));
         })
-    return smurfs;
 }
 
 export const fetchStart = () => {
