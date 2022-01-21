@@ -16,7 +16,6 @@ import SmurfContext from '../contexts/SmurfContext';
     if (loading) {
         return <h1>Loading...</h1>;
     }
-    console.log(smurfs);
     return(<div className="listContainer">
         {
             smurfs.map(smurf => {
