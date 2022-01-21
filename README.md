@@ -113,8 +113,18 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 1. What problem does the context API help solve?
 
+  Context API is easy to setup and connect state throughout multiple components - especially in nesting components or when multiple components want access to a particular prop.
+
 2. In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+
+  Actions are functions and they describe what happen - they fetch data, add smurf, etc.
+  Reducers are functions and they update state from actions and provide separation of concerns.
+  The store is like a shopping cart where props and state can be updated and accessed, making prop drilling no longer necessary. It is considered the single source of truth because the only way to change data is to dispatch actions with a reducer - this reduces side effects and keeps code predictable.
 
 3. What does `redux-thunk` allow us to do? How does it change our `action-creators`?
 
+  A thunk is middleware that allows us to return a function, and specifically redux-thunk allows us to dispatch multiple times. Our action creators can have asynchronous actions such as axios calls as well as stateful logic that then can change which state is updated or even if a state is updated whatsoever.
+
 4. What is your favorite state management system you've learned and this sprint? Please explain why!
+
+  I definitely prefer Context API so far; it modularizes the various parts of an application state so that separation of concern is much easier to maintain. The easy setup and easy connection to state through the store is  very appreciated.
