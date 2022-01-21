@@ -19,7 +19,7 @@ export const fetchSmurfs = () => (dispatch) => {
             dispatch(fetchSuccess(resp.body));
         })
         .catch(err => {
-            console.error(err);
+            dispatch(fetchFail(err));
         })
 }
 
@@ -30,5 +30,18 @@ export const fetchSuccess = (smurfs) => {
     return({type: FETCH_SUCCESS, payload: smurfs});
 }
 
+export const fetchFail = (error) => {
+    return({type: FETCH_FAIL, payload: error});
+}
+
 //2. Add a standard action that allows us to add new smurf (including the name, nickname, position, summary)
+
+export const addSmurf = (smurf) => {
+    return({type: ADD_SMURF, payload: smurf});
+}
+
 //3. Add a standard action that allows us to set the value of the error message slice of state.
+
+export const setError = (error) => {
+    return({type: SET_ERROR, payload: error});
+}
