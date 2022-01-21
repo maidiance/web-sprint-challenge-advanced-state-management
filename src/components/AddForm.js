@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react';
+import { connect } from 'react-redux';
 import FormContext from '../contexts/FormContext';
 
-const AddForm = (props) => {
+const AddForm = ({dispatch}) => {
     const {error, setError, addSmurf} = useContext(FormContext);
     const [state, setState] = useState({
         name:"",
@@ -21,9 +22,10 @@ const AddForm = (props) => {
         e.preventDefault();
         if (state.name === "" || state.position === "" || state.nickname === "") {
             //dispatch a custom error action
-            setError('addForm error');
+            dispatch(setError('addForm error'));
         } else {
             //dispatch an addSmurf action
+            dispatch(addSmurf(state));
         }
     }
 
@@ -54,7 +56,7 @@ const AddForm = (props) => {
     </section>);
 }
 
-export default AddForm;
+export default connect()(AddForm);
 
 //Task List:
 //1. Connect the errorMessage, setError and addSmurf actions to the AddForm component.

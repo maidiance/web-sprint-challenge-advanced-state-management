@@ -15,7 +15,6 @@ export const SET_ERROR = 'SET_ERROR';
 export const fetchSmurfs = () => (dispatch) => {
     axios.get('http://localhost:3333/smurfs')
         .then(resp => {
-            console.log('fetchSmurfs', resp.data);
             dispatch(fetchStart());
             dispatch(fetchSuccess(resp.data));
         })
